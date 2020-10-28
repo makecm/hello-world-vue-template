@@ -1,18 +1,27 @@
 <template>
   <div id="app">
     <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <HelloWorld v-bind:msg="makeTemplateProps.headline"/>
   </div>
 </template>
 
 <script>
 import HelloWorld from './components/HelloWorld.vue'
 
+const makeTemplateMixin = {
+  computed: {
+    makeTemplateProps() {
+      return window.templateProps || {headline: "Welcome to Your Vue.js App"};
+    }
+  }
+}
+
 export default {
   name: 'App',
   components: {
     HelloWorld
-  }
+  },
+  mixins: [makeTemplateMixin]
 }
 </script>
 
