@@ -1,17 +1,22 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld v-bind:msg="makeTemplateProps.headline"/>
+  <div id="app" v-bind:style="{ backgroundImage: 'url(' + makeTemplateProps.backgroundImage + ')' }">
+    <Logos />
+    <h1>{{ makeTemplateProps.headline }}</h1>
+    <Shapes />
   </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import Logos from './components/Logos.vue';
+import Shapes from './components/Shapes.vue';
 
 const makeTemplateMixin = {
   computed: {
     makeTemplateProps() {
-      return window.templateProps || {headline: "Welcome to Your Vue.js App"};
+      return window.templateProps || {
+        headline: "Hello World",
+        backgroundImage: '',
+      };
     }
   }
 }
@@ -19,19 +24,48 @@ const makeTemplateMixin = {
 export default {
   name: 'App',
   components: {
-    HelloWorld
+    Logos,
+    Shapes
   },
   mixins: [makeTemplateMixin]
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
+  body {
+    margin: 0;
+    font-family: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  #app {
+    width: 100vw;
+    height: 100vh;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+
+  h1 {
+    font-size: clamp( 16px, 10vh, 250px);
+    font-weight: 700;
+    line-height: 100%;
+    color: #1f2a44;
+    text-align: center;
+    width: 100%;
+    padding: 0 2rem;
+    z-index: 1;
+  }
 </style>
