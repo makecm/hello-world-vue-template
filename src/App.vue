@@ -1,8 +1,14 @@
 <template>
   <div id="app" v-bind:style="{ backgroundImage: 'url(' + makeTemplateProps.backgroundImage + ')' }">
-    <Logos />
+
+    <div v-if="makeTemplateProps.showLogos" style="z-index: 2;">
+      <Logos />
+    </div>
+
     <h1>{{ makeTemplateProps.headline }}</h1>
+
     <Shapes />
+
   </div>
 </template>
 
@@ -15,6 +21,7 @@ const makeTemplateMixin = {
     makeTemplateProps() {
       return window.templateProps || {
         headline: "Hello World",
+        showLogos: true,
         backgroundImage: '',
       };
     }

@@ -21,7 +21,6 @@
     background-color: #1f2a44;
     padding: clamp( 0.5rem, 5vw, 2rem);
     border-radius: 3rem;
-    z-index: 2;
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
   }
 
